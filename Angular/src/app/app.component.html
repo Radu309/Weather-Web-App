@@ -1,80 +1,34 @@
-<div class="container" xmlns:background-image="http://www.w3.org/1999/xhtml">
+<div class="container">
   <div class="image-{{currentWeatherImage}}">
-
-    <h1 class="cityName">City: {{city}}</h1>
-
-    <div class="weather-diagram">
-      <div class="hour">
-        <div class="time">{{fiveHours[0]}}:00</div>
-        <div class="icon {{fiveConditions[0]}}"></div>
-        <div class="temperature">{{fiveTemps[0]}}°C</div>
-      </div>
-      <div class="hour">
-        <div class="time">{{fiveHours[1]}}:00</div>
-        <div class="icon {{fiveConditions[1]}}"></div>
-        <div class="temperature">{{fiveTemps[1]}}°C</div>
-      </div>
-      <div class="hour">
-        <div class="time">{{fiveHours[2]}}:00</div>
-        <div class="icon {{fiveConditions[2]}}"></div>
-        <div class="temperature">{{fiveTemps[2]}}°C</div>
-      </div>
-      <div class="hour">
-        <div class="time">{{fiveHours[3]}}:00</div>
-        <div class="icon {{fiveConditions[3]}}"></div>
-        <div class="temperature">{{fiveTemps[3]}}°C</div>
-      </div>
-      <div class="hour">
-        <div class="time">{{fiveHours[4]}}:00</div>
-        <div class="icon {{fiveConditions[4]}}"></div>
-        <div class="temperature">{{fiveTemps[4]}}°C</div>
-      </div>
+    <h1 class="cityName">{{city}}</h1>
+    <br>
+    <div class="weather-diagram" style="text-align: center" >
+      <a class="hour" *ngFor="let num of listOfNumbers">
+        <div class="time">{{firstHours[num]}}:00</div>
+        <div class="icon {{firstConditions[num]}}"></div>
+        <div class="temperature">{{firstTemps[num]}}°C</div>
+      </a>
     </div>
-
+    <br>
+    <br>
     <div class="rowWeather">
       <table>
         <tr>
           <th>Day</th>
           <th>Maximum</th>
           <th>Minimum</th>
-          <th></th>
         </tr>
-        <tr>
-          <td>{{fiveDays[0]}}</td>
-          <td>{{maxFiveDays[0]}}°C</td>
-          <td>{{minFiveDays[0]}}°C</td>
-          <td>Row 1, Column 4</td>
-        </tr>
-        <tr>
-          <td>{{fiveDays[1]}}</td>
-          <td>{{maxFiveDays[1]}}°C</td>
-          <td>{{minFiveDays[1]}}°C</td>
-          <td>Row 1, Column 4</td>
-        </tr>
-        <tr>
-          <td>{{fiveDays[2]}}</td>
-          <td>{{maxFiveDays[2]}}°C</td>
-          <td>{{minFiveDays[2]}}°C</td>
-          <td>Row 1, Column 4</td>
-        </tr>
-        <tr>
-          <td>{{fiveDays[3]}}</td>
-          <td>{{maxFiveDays[3]}}°C</td>
-          <td>{{minFiveDays[3]}}°C</td>
-          <td>Row 1, Column 4</td>
-        </tr>
-        <tr>
-          <td>{{fiveDays[4]}}</td>
-          <td>{{maxFiveDays[4]}}°C</td>
-          <td>{{minFiveDays[4]}}°C</td>
-          <td>Row 1, Column 4</td>
+        <tr *ngFor="let num of listOfDays">
+          <td>{{fiveDays[num]}}</td>
+          <td>{{maxFiveDays[num]}}°C</td>
+          <td>{{minFiveDays[num]}}°C</td>
         </tr>
       </table>
       <br>
-      <div>
-        <label class="newCity" for="Name">City:  </label>
-        <input class="newCity" type="text" id="Name" name="Name" placeholder="New City">
-        <button class="newCity" type="button"
+      <div style="text-align: center">
+        <label for="Name"></label>
+        <input type="text" id="Name" name="Name" placeholder="New City">
+        <button type="button"
                 (click)="selectNewCity()">Select new City!
         </button>
       </div>
