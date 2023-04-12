@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
 
 
   constructor(private http: HttpClient) {}
-
+  //functia de OnInit are ca scop initializarea ferestres cu toate datele importante de la pornirea aplicatiei
   async ngOnInit() {
     let i;
     for(i = 0; i < 8; i++)
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
     this.nextDays();
     await this.displayWeatherData(this.city);
   }
-
+  //in metoda currentLocation am aflat locatia curenta in functie de longitudine si latitudine
   public async currentLocation(): Promise<string> {
     var lat: number = 46.770439;
     var long: number = 23.591423;
@@ -59,18 +59,21 @@ export class AppComponent implements OnInit{
     }
   }
 
+  //metoda selectNewCity reprezinta actiunea butonului, care are ca scop sa actualizeze pagina cu noul ora sinserat
   public async selectNewCity(){
     this.city = (document.getElementById("Name") as HTMLInputElement).value;
     this.nextDays();
     await this.displayWeatherData(this.city);
   }
 
+  //metoda getWeatherData salveaza toate datele din API-ul folosit intr-o lista de date
   public async getWeatherData(city: string): Promise<Weather[]> {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${this.apiKey}&units=metric`;
     const response = await axios.get<{list: Weather[]}>(url);
     return response.data.list;
   }
 
+  //in metoda displayWeatherData, am parcurs lista cu toate datele legate de vreme, manipuland datele in funcite de cerinte
   public async displayWeatherData(city: string){
     try {
       const data = await this.getWeatherData(city);
@@ -113,6 +116,7 @@ export class AppComponent implements OnInit{
     }
   }
 
+  //metoda nextDays salveaza care sunt urmatoarele 5 zile din ziua curenta.
   public nextDays(): void {
     var it = 0;
     const currentDate = new Date();
